@@ -45,7 +45,35 @@ function iterator(state)
 	return nil
 end
 
+--[[
 for word in allwords_table() do
 	print(word)
 end
+--]]
+
+
+-- function
+function allwords_func(f)
+	-- repeat for each line in the file
+	for l in io.lines() do
+		--for w in string.gfind(l, "%w+") do
+		for w in string.gmatch(l, "%w+") do
+			-- call the function
+			f(w)
+		end
+	end
+end
+
+--allwords_func(print)
+
+-- 匿名函数,统计次数
+-- 失败了！5.3版本gfind不存在,改用gmatch错误
+--[[
+local count = 0
+allwords_func(function (w)
+	if w == "hello" then count = count + 1 end
+end)
+print(count)
+]]--
+
 
