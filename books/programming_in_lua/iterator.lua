@@ -13,7 +13,7 @@ function allwords()
 				pos = 1
 			end
 		end
-	return nil
+		return nil
 	end
 end
 

@@ -1,3 +1,4 @@
+-- 生成器
 function printResult(a)
 	for _,v in ipairs(a) do
 		io.write(v, " ")
