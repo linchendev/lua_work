@@ -31,6 +31,6 @@ function comb(a, b, n, m)
 end
 
 -- main
---permgen({1,2,3,4}, 4)
-b = {}
-comb({1,2,3,4,5,6}, b, 6, 3)
+permgen({1,2,3,4}, 4)
+--b = {}
+--comb({1,2,3,4,5,6}, b, 6, 3)

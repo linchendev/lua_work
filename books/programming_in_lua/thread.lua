@@ -1,4 +1,4 @@
--- 非抢占式多线程
+-- 非抢占式多线程 TODO 为啥下载不下来
 
 -- LuaSocket库
 local socket = require "socket"
@@ -7,13 +7,16 @@ function receive(con)
 	con:settimeout(0)
 	local s, status = con:receive(2^10)
 	if status == "timeout" then
+		print("receive timeout")
 		coroutine.yield(connection)
 	end
+	print("receive:", s, status)
 	return s, status
 end
 
 
 function download(host, file)
+	print("start download file:", file)
 	local c = assert(socket.connect(host, 80))
 	local count = 0
 	c:send("GET" .. file .. " HTTP/1.0\r\n\r\n")
@@ -23,7 +26,7 @@ function download(host, file)
 		if status == "closed" then break end
 	end
 	c:close()
-	print(file, count)
+	print("end download file:", file, count)
 end
 
 --download(host, file)
@@ -50,7 +53,7 @@ function dispatcher()
 	end
 end
 
-function dispatcher()
+function dispatcher_select()
 	while true do
 		local n = #threads
 		if n == 0 then break end
@@ -70,11 +73,11 @@ function dispatcher()
 	end
 end
 
-host = "www.w3c.org"
+host = "www.3w.org"
 
 get(host, "/TR/html401/html40.txt")
 get(host, "/TR/REC-html32.html")
 
-dispatcher()
+dispatcher_select()
 
 

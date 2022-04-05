@@ -17,6 +17,7 @@ function allwords()
 	end
 end
 
+
 --[[
 for word in allwords() do
 	print(word)

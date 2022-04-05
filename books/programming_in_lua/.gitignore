@@ -1,0 +1,5 @@
+*.out
+c/*.out
+c/tags
+tags
+*.txt
